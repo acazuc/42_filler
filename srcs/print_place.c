@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:20:05 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/02 11:35:38 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/02 11:39:54 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void		print(int x, int y)
 {
-	ft_putendl_fd("PRINTING PLACE POSITIONS", 2);
 	ft_putnbr(x);
 	ft_putchar(' ');
 	ft_putnbr(y);
@@ -57,6 +56,10 @@ void			print_place(t_env *env)
 		{
 			if (fit(env, x, y))
 			{
+				if (env->player_char == 'O')
+					env->player_char = 'o';
+				else if (env->player_char == 'X')
+					env->player_char = 'x';
 				print(y, x);
 				return ;
 			}

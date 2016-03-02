@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 16:08:51 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/02 11:36:08 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/02 11:41:31 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			read_table(t_env *env)
 	if (!(line = get_next_line()))
 		error_quit("Failed to read line");
 	if (!ft_strstr(line, "Plateau ") || line[ft_strlen(line) - 1] != ':')
-		error_quit(": Invalid line");
+		error_quit("Invalid line plateau");
 	if (!(tab = ft_strsplit(line, ' '))
 			|| !tab[0] || !tab[1] || !tab[2] || tab[3])
 		error_quit("Failed to malloc split tab");
