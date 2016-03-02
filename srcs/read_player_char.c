@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:30:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/02 11:35:28 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/02 15:58:59 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	read_player_char(t_env *env)
 		error_quit("Bad split line");
 	if (!ft_strcmp(split[2], "p1"))
 		env->player_char = 'O';
-	else if (!ft_strcmp(split[3], "p2"))
+	else if (!ft_strcmp(split[2], "p2"))
 		env->player_char = 'X';
 	else
 		error_quit("Invalid player char line");

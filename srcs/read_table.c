@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 16:08:51 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/02 11:41:31 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/02 17:06:17 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ static void		fill_table_read(t_env *env)
 	env->map[i] = NULL;
 }
 
+static void		do_free(void *a, void *b, void *c, void *d)
+{
+	free(a);
+	free(b);
+	free(c);
+	free(d);
+}
+
 void			read_table(t_env *env)
 {
 	char	**tab;
@@ -46,6 +54,8 @@ void			read_table(t_env *env)
 
 	if (!(line = get_next_line()))
 		error_quit("Failed to read line");
+	if (!ft_strcmp(line, ""))
+		exit(0);
 	if (!ft_strstr(line, "Plateau ") || line[ft_strlen(line) - 1] != ':')
 		error_quit("Invalid line plateau");
 	if (!(tab = ft_strsplit(line, ' '))
@@ -60,10 +70,7 @@ void			read_table(t_env *env)
 		error_quit("Invalid int value");
 	env->map_width = ft_atoi(tab[2]);
 	env->map_height = ft_atoi(tab[1]);
-	free(tab[0]);
-	free(tab[1]);
-	free(tab[2]);
-	free(tab);
+	do_free(tab[0], tab[1], tab[2], tab);
 	free(line);
 	fill_table_read(env);
 }

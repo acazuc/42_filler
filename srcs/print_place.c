@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:20:05 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/02 11:39:54 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/02 17:05:01 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ static int		fit(t_env *env, int x, int y)
 		while (j < env->piece_width)
 		{
 			if (env->piece[i][j] == '*'
+					&& env->map[y + i][x + j] != env->player_char
+					&& env->map[y + i][x + j] != '.')
+				return (0);
+			if (env->piece[i][j] == '*'
 					&& env->map[y + i][x + j] == env->player_char)
 				overlap_nb++;
 			j++;
@@ -49,17 +53,13 @@ void			print_place(t_env *env)
 	int		y;
 
 	y = 0;
-	while (y < env->map_height - env->piece_height)
+	while (y <= env->map_height - env->piece_height)
 	{
 		x = 0;
-		while (x < env->map_width - env->piece_width)
+		while (x <= env->map_width - env->piece_width)
 		{
 			if (fit(env, x, y))
 			{
-				if (env->player_char == 'O')
-					env->player_char = 'o';
-				else if (env->player_char == 'X')
-					env->player_char = 'x';
 				print(y, x);
 				return ;
 			}
