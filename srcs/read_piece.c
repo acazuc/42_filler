@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 09:55:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/03/02 11:02:09 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/03/04 10:30:45 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		fill_piece_read(t_env *env)
 	int		i;
 
 	i = 0;
-	if (!(env->piece = malloc(sizeof(*env->piece) * (env->piece_height - 1))))
+	if (!(env->piece = malloc(sizeof(*env->piece) * (env->piece_height + 1))))
 		error_quit("Failed to malloc map tab");
 	while (i < env->piece_height)
 	{
