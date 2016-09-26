@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:20:05 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/22 11:38:33 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/26 13:48:02 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int		fit(t_env *env, int x, int y)
 		j = 0;
 		while (j < env->piece_width)
 		{
+			if (y + i >= env->map_height || x + j >= env->map_width)
+				return (0);
 			if (env->piece[i][j] == '*')
 			{
 				if (env->map[y + i][x + j] == env->player_char)
@@ -44,12 +46,10 @@ static int		fit(t_env *env, int x, int y)
 		}
 		i++;
 	}
-	if (overlap == 1)
-		return (1);
-	return (0);
+	return (overlap == 1);
 }
 
-int			print_place_border(t_env *env, int i)
+int				print_place_border(t_env *env, int i)
 {
 	int		x;
 
@@ -62,26 +62,26 @@ int			print_place_border(t_env *env, int i)
 		}
 	x = i - 1;
 	while (++x < env->map_height - env->piece_height - i)
-		if (fit(env, env->map_width - env->piece_width - i - 1, x))
+		if (fit(env, env->map_width - env->piece_width - i, x))
 		{
-			print(x, env->map_width - env->piece_width - i - 1);
+			print(x, env->map_width - env->piece_width - i);
 			return (1);
 		}
 	return (0);
 }
 
-int			print_place_border_2(t_env *env, int i)
+int				print_place_border_2(t_env *env, int i)
 {
 	int		x;
 
-	x = env->map_width - env->piece_width - i;
+	x = env->map_width - env->piece_width - i + 1;
 	while (--x >= i)
-		if (fit(env, x, env->map_height - env->piece_height - i - 1))
+		if (fit(env, x, env->map_height - env->piece_height - i))
 		{
-			print(env->map_height - env->piece_height - i - 1, x);
+			print(env->map_height - env->piece_height - i, x);
 			return (1);
 		}
-	x = env->map_height - env->piece_height - i;
+	x = env->map_height - env->piece_height - i + 1;
 	while (--x >= i)
 		if (fit(env, i, x))
 		{
